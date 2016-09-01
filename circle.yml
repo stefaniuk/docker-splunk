@@ -1,0 +1,14 @@
+machine:
+  services:
+    - docker
+dependencies:
+  cache_directories:
+    - "~/docker"
+  override:
+    - docker info
+    - if [[ -e ~/docker/image.tar ]]; then docker load --input ~/docker/image.tar; fi
+    - docker build --tag stefaniuk/splunk-indexer .
+    - mkdir -p ~/docker; docker save stefaniuk/splunk-indexer > ~/docker/image.tar
+test:
+  override:
+    - ?
