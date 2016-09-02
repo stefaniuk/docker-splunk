@@ -3,7 +3,7 @@ set -e
 
 chown -R $SYSTEM_USER:$SYSTEM_USER $SPLUNK_HOME
 gosu $SYSTEM_USER $SPLUNK_HOME/bin/splunk start --answer-yes --no-prompt --accept-license
-trap "sudo -HEu $SYSTEM_USER $SPLUNK_HOME/bin/splunk stop" SIGINT SIGTERM EXIT
+trap "gosu $SYSTEM_USER $SPLUNK_HOME/bin/splunk stop" SIGINT SIGTERM EXIT
 
 if [ ! -f $SPLUNK_HOME/etc/.ui_login ]; then
 
@@ -12,13 +12,11 @@ if [ ! -f $SPLUNK_HOME/etc/.ui_login ]; then
         -auth admin:changeme \
         -password $SPLUNK_PASSWORD
 
-    # SEE: http://docs.splunk.com/Documentation/Splunk/latest/Forwarding/Enableareceiver
     if [ -n "$SPLUNK_ENABLE_LISTEN" ]; then
         gosu $SYSTEM_USER $SPLUNK_HOME/bin/splunk \
             enable listen $SPLUNK_ENABLE_LISTEN -auth admin:$SPLUNK_PASSWORD $SPLUNK_ENABLE_LISTEN_ARGS
     fi
 
-    # SEE: http://docs.splunk.com/Documentation/Splunk/latest/Forwarding/Deployanixdfmanually
     if [ -n "$SPLUNK_FORWARD_SERVER" ]; then
         gosu $SYSTEM_USER $SPLUNK_HOME/bin/splunk \
             add forward-server $SPLUNK_FORWARD_SERVER -auth admin:$SPLUNK_PASSWORD $SPLUNK_FORWARD_SERVER_ARGS
@@ -32,7 +30,6 @@ if [ ! -f $SPLUNK_HOME/etc/.ui_login ]; then
         done
     fi
 
-    # SEE: http://docs.splunk.com/Documentation/Splunk/latest/Data/Monitornetworkports
     if [ -n "$SPLUNK_ADD" ]; then
         gosu $SYSTEM_USER $SPLUNK_HOME/bin/splunk \
             add $SPLUNK_ADD -auth admin:$SPLUNK_PASSWORD
