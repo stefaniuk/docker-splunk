@@ -12,3 +12,4 @@ dependencies:
 test:
   override:
     - docker run --detach --name=splunk stefaniuk/splunk; sleep 10
+    - docker ps | grep "stefaniuk/splunk"
