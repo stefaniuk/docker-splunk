@@ -15,15 +15,13 @@ RUN set -ex \
     && apt-get --yes update \
     && apt-get --yes install \
         libgssapi-krb5-2 \
-    && wget -O \
-        /tmp/splunk-$SPLUNK_VERSION-$SPLUNK_BUILD-Linux-x86_64.tgz \
-        $SPLUNK_URL/$SPLUNK_VERSION/linux/splunk-$SPLUNK_VERSION-$SPLUNK_BUILD-Linux-x86_64.tgz \
-    && wget -O \
-        /tmp/splunk-$SPLUNK_VERSION-$SPLUNK_BUILD-Linux-x86_64.tgz.md5 \
-        $SPLUNK_URL/$SPLUNK_VERSION/linux/splunk-$SPLUNK_VERSION-${SPLUNK_BUILD}-Linux-x86_64.tgz.md5 \
-    && (cd /tmp && md5sum -c splunk-$SPLUNK_VERSION-$SPLUNK_BUILD-Linux-x86_64.tgz.md5) \
+    \
+    && file=splunk-$SPLUNK_VERSION-$SPLUNK_BUILD-Linux-x86_64.tgz \
+    && wget -O /tmp/$file $SPLUNK_URL/$SPLUNK_VERSION/linux/$file \
+    && wget -O /tmp/$file.md5 $SPLUNK_URL/$SPLUNK_VERSION/linux/$file.md5 \
+    && (cd /tmp && md5sum -c $file.md5) \
     && mkdir -p $SPLUNK_HOME \
-    && tar xzf /tmp/splunk-$SPLUNK_VERSION-$SPLUNK_BUILD-Linux-x86_64.tgz --strip 1 -C $SPLUNK_HOME \
+    && tar xzf /tmp/$file --strip 1 -C $SPLUNK_HOME \
     \
     && rm -rf /tmp/* /var/tmp/* /var/lib/apt/lists/* /var/cache/apt/* \
     && rm -f /etc/apt/apt.conf.d/00proxy
