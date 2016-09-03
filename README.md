@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/stefaniuk/docker-splunk.svg?style=shield "CircleCI")](https://circleci.com/gh/stefaniuk/docker-splunk) [![Quay](https://quay.io/repository/stefaniuk/splunk/status "Quay")](https://quay.io/repository/stefaniuk/splunk)
+[![Circle CI](https://circleci.com/gh/stefaniuk/docker-splunk.svg?style=shield "CircleCI")](https://circleci.com/gh/stefaniuk/docker-splunk)&nbsp;[![Size](https://images.microbadger.com/badges/image/stefaniuk/splunk.svg)](http://microbadger.com/images/stefaniuk/splunk)&nbsp;[![Version](https://images.microbadger.com/badges/version/stefaniuk/splunk.svg)](http://microbadger.com/images/stefaniuk/splunk)&nbsp;[![Commit](https://images.microbadger.com/badges/commit/stefaniuk/splunk.svg)](http://microbadger.com/images/stefaniuk/splunk)&nbsp;[![Docker Hub](https://img.shields.io/docker/pulls/stefaniuk/splunk.svg)](https://hub.docker.com/r/stefaniuk/splunk/)
 
 Docker Splunk
 =============
@@ -8,9 +8,9 @@ Docker Splunk
 Installation
 ------------
 
-Automated builds of the image are available on [Docker Hub](https://hub.docker.com/r/stefaniuk/splunk/).
+Builds of the image are available on [Docker Hub](https://hub.docker.com/r/stefaniuk/splunk/).
 
-    docker pull stefaniuk/splunk
+    docker pull stefaniuk/splunk:latest
 
 Alternatively you can build the image yourself.
 
@@ -31,5 +31,5 @@ Start container using:
 Todo
 ----
 
-- Configure indexer
-- Configure forwarder
+- Configuration example of indexer
+- Configuration example of forwarder

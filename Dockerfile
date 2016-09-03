@@ -1,4 +1,4 @@
-FROM stefaniuk/ubuntu:16.04-20160901
+FROM stefaniuk/ubuntu:16.04-20160903
 MAINTAINER daniel.stefaniuk@gmail.com
 # SEE: https://github.com/outcoldman/docker-splunk/blob/master/splunk/Dockerfile
 
@@ -30,3 +30,16 @@ VOLUME [ "/opt/splunk/var" ]
 EXPOSE 1514 8000 8088 8089 8191 9997
 
 COPY assets/sbin/entrypoint.sh /sbin/entrypoint.sh
+
+### METADATA ###################################################################
+
+ARG VERSION
+ARG BUILD_DATE
+ARG VCS_REF
+ARG VCS_URL
+LABEL \
+    version=$VERSION \
+    build-date=$BUILD_DATE \
+    vcs-ref=$VCS_REF \
+    vcs-url=$VCS_URL \
+    license="MIT"
