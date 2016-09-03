@@ -12,4 +12,4 @@ dependencies:
 test:
   override:
     - docker run --interactive --tty --detach --name=splunk stefaniuk/splunk; sleep 10
-    - docker logs apt-cacher-ng | grep "The Splunk web interface is at"
+    - docker logs splunk | grep "The Splunk web interface is at"
