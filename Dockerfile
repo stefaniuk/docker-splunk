@@ -1,4 +1,4 @@
-FROM stefaniuk/ubuntu:16.04-20160903
+FROM stefaniuk/ubuntu:16.04-20160905
 MAINTAINER daniel.stefaniuk@gmail.com
 # SEE: https://github.com/outcoldman/docker-splunk/blob/master/splunk/Dockerfile
 
