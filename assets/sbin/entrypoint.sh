@@ -43,6 +43,8 @@ if [ ! -f $SPLUNK_HOME/etc/.ui_login ]; then
         done
     fi
 
+    echo -e "\n[license]\nactive_group = Free" >> /opt/splunk/etc/system/local/server.conf
+
     # disable the "First time signing in?" message
     touch $SPLUNK_HOME/etc/.ui_login
 fi
